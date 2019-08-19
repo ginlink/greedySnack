@@ -27,10 +27,11 @@
 
     //2设置元素属性
     // 设置随机坐标
-    let x = Tool.getRandom(0, map.offsetWidth / this.width - 1);
-    let y = Tool.getRandom(0, map.offsetHeight / this.height - 1);
-    element.style.top = y * this.width + 'px';
-    element.style.left = x * this.height + 'px';
+    this.x = Tool.getRandom(0, map.offsetWidth / this.width - 1);
+    this.y = Tool.getRandom(0, map.offsetHeight / this.height - 1);
+    
+    element.style.top = this.y * this.width + 'px';
+    element.style.left = this.x * this.height + 'px';
 
     // console.log(x);
     // console.log(y);
@@ -46,10 +47,11 @@
   }
   function remove() {
     // 反向遍历，删除数组中所有元素
+    // console.log(elements);
     for (let i = elements.length - 1; i >= 0; i--) {
       //拿到食物父节点
       let parentNode = elements[i].parentNode;
-      parentNode.removeChild();
+      parentNode.removeChild(elements[i]);
       elements.splice(i,1);
     }
   }
@@ -57,9 +59,3 @@
   w.Food = Food;
 
 })(window, undefined)
-
-// 测试
-let map = document.getElementById('map');
-let food = new Food();
-food.render(map);
-// console.log(Tool.getRandom(0, 10));
